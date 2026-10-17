@@ -15,14 +15,14 @@ You do not write code. You write in Notion and approve changes in plain English.
 
 ```mermaid
 flowchart LR
-  N[Notion<br/>Publishing + Ideas] --> S[1. Scan]
+  N[1. Write<br/>brainstorm + write in Notion<br/>schematics if needed<br/>set to Ready] --> S[2. Scan]
   L[LinkedIn<br/>optional] --> S
-  S --> D[2. Decide<br/>you approve]
-  D --> P[3. Publish<br/>build + check]
+  S --> D[3. Decide<br/>you approve]
+  D --> P[4. Publish<br/>build + check]
   P --> G[GitHub<br/>git push to main]
   G --> H[Host, e.g. AWS Amplify<br/>rebuilds the site]
   H --> W[Live site]
-  P --> R[4. Record<br/>Notion Site Log]
+  P --> R[5. Record<br/>Notion Site Log]
 ```
 
 | Stage | What Claude does |
