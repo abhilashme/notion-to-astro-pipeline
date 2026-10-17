@@ -18,8 +18,10 @@ flowchart LR
   N[Notion<br/>Publishing + Ideas] --> S[1. Scan]
   L[LinkedIn<br/>optional] --> S
   S --> D[2. Decide<br/>you approve]
-  D --> P[3. Publish<br/>build + check + push]
-  P --> H[Host rebuilds<br/>site is live]
+  D --> P[3. Publish<br/>build + check]
+  P --> G[GitHub<br/>git push to main]
+  G --> H[Host, e.g. AWS Amplify<br/>rebuilds the site]
+  H --> W[Live site]
   P --> R[4. Record<br/>Notion Site Log]
 ```
 
