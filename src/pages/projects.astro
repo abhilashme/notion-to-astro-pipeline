@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../site';
+
+// ─────────────────────────────────────────────────────────────
+// EDIT YOUR PROJECTS HERE. Add or remove entries freely.
+// ─────────────────────────────────────────────────────────────
+const projects = [
+  {
+    title: 'Example project',
+    description: 'One or two sentences on what you built and why it matters.',
+    link: '', // optional: a URL or a page path such as '/projects/my-project'
+  },
+];
+---
+
+<BaseLayout title={`Projects — ${SITE.name}`} description="Selected projects and work.">
+  <h1>Projects</h1>
+  <p class="lead">A selection of things I have built and worked on.</p>
+
+  <ul class="card-list" style="margin-top: 2rem;">
+    {
+      projects.map((p) => (
+        <li class="card">
+          <h3>{p.link ? <a href={p.link}>{p.title}</a> : p.title}</h3>
+          <p>{p.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

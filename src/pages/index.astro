@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../site';
+
+// ─────────────────────────────────────────────────────────────
+// EDIT YOUR DETAILS HERE. Everything below drives the page.
+// The pipeline updates `intro` and `experience` from Notion and LinkedIn.
+// ─────────────────────────────────────────────────────────────
+const name = SITE.name;
+const tagline = 'Your role · Your city';
+
+const intro = [
+  'A short paragraph on who you are and what you do.',
+  'A second paragraph on what you care about outside work, or what you write about.',
+];
+
+const social = [
+  { label: 'Email', href: 'mailto:you@example.com' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/your-profile' },
+];
+
+// Résumé. If you use the LinkedIn check, this mirrors your LinkedIn Experience section.
+const experience = [
+  {
+    role: 'Your current role',
+    org: 'Organization',
+    period: 'Jan 2024 – Present',
+    points: [
+      'One line on what you own or lead.',
+      'One line on a result, with a number if you have one.',
+    ],
+  },
+  {
+    role: 'Your previous role',
+    org: 'Organization',
+    period: 'Jan 2020 – Dec 2023',
+    points: ['One line on what you did.'],
+  },
+];
+
+const skills = ['Skill one', 'Skill two', 'Skill three'];
+---
+
+<BaseLayout title={`${name} — Personal Website`}>
+  <h1>{name}</h1>
+  <p class="tagline">{tagline}</p>
+
+  {intro.map((para) => <p class="lead">{para}</p>)}
+
+  <ul class="social">
+    {social.map((s) => <li><a href={s.href}>{s.label}</a></li>)}
+  </ul>
+
+  <hr />
+
+  <h2>Experience</h2>
+  {
+    experience.map((job) => (
+      <div class="entry">
+        <p class="entry-role">
+          {job.role} <span class="entry-org">· {job.org}</span>
+        </p>
+        <p class="entry-period">{job.period}</p>
+        <ul>
+          {job.points.map((pt) => <li>{pt}</li>)}
+        </ul>
+      </div>
+    ))
+  }
+
+  <h2>Skills</h2>
+  <p>{skills.map((s) => <span class="tag">{s}</span>)}</p>
+</BaseLayout>

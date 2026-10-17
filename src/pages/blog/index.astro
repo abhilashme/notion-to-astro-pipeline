@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { SITE } from '../../site';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+---
+
+<BaseLayout title={`Blog — ${SITE.name}`} description="Writing and notes.">
+  <h1>Blog</h1>
+  <p class="lead">Notes and essays.</p>
+
+  <ul class="card-list" style="margin-top: 2rem;">
+    {
+      posts.map((post) => (
+        <li class="card">
+          <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
+          <p>{post.data.description}</p>
+          <div class="meta">{fmt(post.data.pubDate)}</div>
+        </li>
+      ))
+    }
+  </ul>
+
+  {posts.length === 0 && <p>No posts yet — check back soon.</p>}
+</BaseLayout>
